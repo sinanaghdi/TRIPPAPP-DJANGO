@@ -18,9 +18,9 @@ class Trip(models.Model):
     
 class Note(models.Model):
     EXCURSIONS = (
-        ("event" ,"Event" )
-        ("dining" ,"Dining" )
-        ("experience" ,"Experience" )
+        ("event" ,"Event" ),
+        ("dining" ,"Dining" ),
+        ("experience" ,"Experience" ),
         ("general" ,"General" )
     )
     trip = models.ForeignKey(Trip,on_delete=models.CASCADE, related_name='notes')
@@ -28,6 +28,7 @@ class Note(models.Model):
     description = models.TextField()
     type = models.CharField(max_length=100,choices=EXCURSIONS)
     img = models.ImageField(upload_to='notes' ,blank=True ,null=True)
+    # pillow -> Handel img in django
     rating = models.PositiveSmallIntegerField(default=1, validators=[MaxValueValidator(5)])
     
     def __str__(self):
